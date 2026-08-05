@@ -1,0 +1,6 @@
+﻿tmp-glibc/
+sstate-cache/
+downloads/
+deploy/
+*.pyc
+__pycache__/

@@ -1,0 +1,4 @@
+﻿* text=auto eol=lf
+*.patch -text
+meta-local/tools/stm32mp-sign-tool binary
+meta-local/cert_create text eol=lf
