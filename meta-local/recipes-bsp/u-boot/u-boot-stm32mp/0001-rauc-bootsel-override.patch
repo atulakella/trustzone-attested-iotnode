@@ -1,0 +1,47 @@
+diff --git a/include/configs/stm32mp15_st_common.h b/include/configs/stm32mp15_st_common.h
+index 60838cb0e3f..74666f6d85f 100644
+--- a/include/configs/stm32mp15_st_common.h
++++ b/include/configs/stm32mp15_st_common.h
+@@ -12,7 +12,41 @@
+ 	"usb_pgood_delay=2000\0" \
+ 	"console=ttySTM0\0" \
+ 	"splashimage=" __stringify(CONFIG_SYS_LOAD_ADDR) "\0" \
+-	"splashpos=m,m\0"
++	"splashpos=m,m\0" \
++	"bootcmd_rauc=" \
++		"if test \"${BOOT_A_LEFT}\" = \"\" || test \"${BOOT_B_LEFT}\" = \"\"; then " \
++			"setenv BOOT_ORDER \"A B\"; " \
++			"setenv BOOT_A_LEFT 3; " \
++			"setenv BOOT_B_LEFT 3; " \
++			"saveenv; " \
++		"fi; " \
++		"setenv raucslot \"\"; " \
++		"setenv distro_bootpart \"\"; " \
++		"setenv rauc_root \"\"; " \
++		"for bootname in ${BOOT_ORDER}; do " \
++			"if test \"${raucslot}\" = \"\"; then " \
++				"if test \"${bootname}\" = \"A\" && test ${BOOT_A_LEFT} -gt 0; then " \
++					"setexpr BOOT_A_LEFT ${BOOT_A_LEFT} - 1; saveenv; " \
++					"setenv raucslot A; setenv distro_bootpart 8; " \
++					"setenv rauc_root /dev/mmcblk0p12; " \
++				"fi; " \
++				"if test \"${bootname}\" = \"B\" && test ${BOOT_B_LEFT} -gt 0; then " \
++					"setexpr BOOT_B_LEFT ${BOOT_B_LEFT} - 1; saveenv; " \
++					"setenv raucslot B; setenv distro_bootpart 9; " \
++					"setenv rauc_root /dev/mmcblk0p13; " \
++				"fi; " \
++			"fi; " \
++		"done\0" \
++	"scan_dev_for_boot_part=" \
++		"run bootcmd_rauc; " \
++		"if test \"${raucslot}\" = \"\"; then " \
++			"echo RAUC: both slots exhausted, falling back to recovery; " \
++		"else " \
++			"if fstype ${devtype} ${devnum}:${distro_bootpart} bootfstype; then " \
++				"part uuid ${devtype} ${devnum}:${distro_bootpart} distro_bootpart_uuid; " \
++				"run scan_dev_for_boot; " \
++			"fi; " \
++		"fi\0"
+ 
+ #include <configs/stm32mp15_common.h>
+ 
