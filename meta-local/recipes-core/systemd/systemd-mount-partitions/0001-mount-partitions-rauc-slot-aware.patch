@@ -1,0 +1,38 @@
+--- a/mount-partitions.sh	2026-10-28 11:07:33.866855748 +0530
++++ b/mount-partitions.sh	2026-10-28 11:07:38.022920112 +0530
+@@ -113,16 +113,34 @@
+     eval $__resultopt="'$_option'"
+ }
+ 
++get_rauc_suffix() {
++    local slot=$(sed -n 's/.*rauc\.slot=\([AB]\).*/\1/p' /proc/cmdline)
++    case "$slot" in
++        A) echo "1" ;;
++        B) echo "2" ;;
++        *) echo "1" ;;   # no rauc.slot present: non-RAUC boot, default to slot A
++    esac
++}
++
+ case "$1" in
+     start)
+         # mount partitions
+         get_type TYPE
+         echo "TYPE of support detected: $TYPE"
++        RAUC_SUFFIX=$(get_rauc_suffix)
+         for part in $MOUNT_PARTITIONS_LIST
+         do
+             part_label=$(echo $part | cut -d',' -f1)
+             mountpoint=$(echo $part | cut -d',' -f2)
+-            found_devices DEVICE DEVICE_OPTION $TYPE $part_label
++            case "$part_label" in
++                bootfs|vendorfs)
++                    search_label="${part_label}${RAUC_SUFFIX}"
++                    ;;
++                *)
++                    search_label="$part_label"
++                    ;;
++            esac
++            found_devices DEVICE DEVICE_OPTION $TYPE "$search_label"
+             echo "$part_label device: $DEVICE"
+             [ -d $mountpoint ] || mkdir -p $mountpoint
+             [ -e $DEVICE ] && mount $DEVICE_OPTION $DEVICE $mountpoint
