@@ -1,0 +1,22 @@
+From ebac6fc01036b138c9c7a4fcd713573a67cb3ba2 Mon Sep 17 00:00:00 2001
+From: zybo <zybo@vitap.local>
+Date: Wed, 14 Oct 2026 14:39:54 +0530
+Subject: [PATCH] dts: enable UART7 for ESP32 link (PE7/PE8, pins already
+ defined upstream as uart7_pins_c)
+
+---
+ arch/arm/boot/dts/st/stm32mp157d-dk1.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/st/stm32mp157d-dk1.dts b/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
+index 0fbaeccc7..6e09a985f 100644
+--- a/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
++++ b/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
+@@ -25,3 +25,7 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ };
++
++&uart7 {
++	status = "okay";
++};

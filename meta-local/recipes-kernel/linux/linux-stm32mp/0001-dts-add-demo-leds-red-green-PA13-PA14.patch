@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: zybo <zybo@vitap.local>
+Date: Mon, 27 Oct 2026 00:00:00 +0530
+Subject: [PATCH] dts: add demo LEDs (red LD6/PA13, green LD4/PA14) for
+ boot-integrity-check demo
+
+---
+ arch/arm/boot/dts/st/stm32mp157d-dk1.dts | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/arch/arm/boot/dts/st/stm32mp157d-dk1.dts b/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
+index 0fbaeccc7..1111111111 100644
+--- a/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
++++ b/arch/arm/boot/dts/st/stm32mp157d-dk1.dts
+@@ -24,6 +24,22 @@
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++	demo_leds {
++		compatible = "gpio-leds";
++
++		led-red {
++			label = "demo:red";
++			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++
++		led-green {
++			label = "demo:green";
++			gpios = <&gpioa 14 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++	};
+ };
+ 
+ &uart7 {
