@@ -83,4 +83,4 @@ No private keys are committed to the repository. The vendored `meta-local/tools/
 
 The certificates and signing setup are for demonstration only. Replace the demo signing chain and review key storage and trust anchors before using this setup beyond a lab environment.
 
-This is a thesis and demonstration project, not a production-ready security implementation.
+This is a demonstration project, not a production-ready security implementation, read more on my [medium post](https://medium.com/@atul.akella/i-committed-to-building-secure-hardware-into-a-final-year-project-heres-how-that-actually-went-fa16704f3c6c?sharedUserId=atul.akella).
