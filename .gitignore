@@ -4,3 +4,24 @@ downloads/
 deploy/
 *.pyc
 __pycache__/
+
+# Device-specific attestation key — regenerates on every board reflash
+demo/pubkey.pem
+
+# Golden image flash package — binary build artifact, not source
+capstone-flash-20261109.zip
+
+# Extracted flash staging folder — binary build artifacts
+capstone-flash-20261109/
+
+# Generated OTA bundles
+demo/*.raucb
+
+# Local backups of device-specific attestation keys
+demo/pubkey.pem.bak-*
+
+# Local reference material
+TI-Webinar.pdf
+
+# Local attestation test script
+demo/test.py

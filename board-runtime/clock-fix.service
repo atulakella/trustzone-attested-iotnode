@@ -1,0 +1,13 @@
+[Unit]
+Description=Force system clock forward (no RTC/NTP on this board)
+DefaultDependencies=no
+Before=sysinit.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/clock-fix.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
