@@ -1,0 +1,2 @@
+bd71e41a63af6b2e61062c20776fcbadff0e6606c5c4e67027c4d20cb369728d  ./fip-clean-current.bin
+ac624a3d1c14b07530e469ffeb73fa69dc328750148af41846237bc9817d1dad  ./fip-tampered-current.bin
