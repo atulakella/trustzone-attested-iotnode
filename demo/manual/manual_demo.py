@@ -16,7 +16,7 @@ from verify import (
 
 
 def main():
-    pubkey = load_pubkey(str(DEMO_DIR / "pubkey.pem"))
+    pubkey = load_pubkey(str(DEMO_DIR / "pubkey-board-test.pem"))
     tee_allow = load_allowlist(str(DEMO_DIR / "tee-allow.txt"))
     ta_allow = load_allowlist(str(DEMO_DIR / "ta-allow.txt"))
 

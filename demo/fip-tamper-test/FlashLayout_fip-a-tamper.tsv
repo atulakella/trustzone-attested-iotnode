@@ -1,0 +1,17 @@
+#Opt	Id	Name	Type	IP	Offset	Binary
+-	0x01	fsbl-boot	Binary	none	0x0	tf-a-stm32mp157d-dk1-optee-programmer-usb_Signed.stm32
+-	0x03	fip-boot	FIP	none	0x0	fip-stm32mp157d-dk1-optee-programmer-usb_Signed.bin
+-	0x04	fsbl1	Binary	mmc0	0x00004400	none
+-	0x05	fsbl2	Binary	mmc0	0x00044400	none
+-	0x06	metadata1	FWU_MDATA	mmc0	0x00084400	none
+-	0x07	metadata2	FWU_MDATA	mmc0	0x000C4400	none
+P	0x08	fip-a	FIP	mmc0	0x00104400	fip-a-tampered.bin
+-	0x09	fip-b	FIP	mmc0	0x00504400	none
+-	0x0A	u-boot-env	ENV	mmc0	0x00904400	none
+-	0x10	bootfs1	System	mmc0	0x00984400	none
+-	0x11	bootfs2	System	mmc0	0x08984400	none
+-	0x12	vendorfs1	FileSystem	mmc0	0x10984400	none
+-	0x13	vendorfs2	FileSystem	mmc0	0x11984400	none
+-	0x14	rootfs1	FileSystem	mmc0	0x12984400	none
+-	0x15	rootfs2	FileSystem	mmc0	0x112984400	none
+-	0x16	userfs	FileSystem	mmc0	0x212984400	none

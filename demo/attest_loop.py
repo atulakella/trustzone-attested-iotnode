@@ -41,7 +41,7 @@ BOARD_USER = "root"
 BOARD_ATTEST_CA = "/usr/bin/attest_ca"
 STRACE_OUT     = "/tmp/attest_trace.txt"
 
-PUBKEY_FILE    = "pubkey.pem"
+PUBKEY_FILE    = "pubkey-board-test.pem"
 TEE_ALLOW_FILE = "tee-allow.txt"
 TA_ALLOW_FILE  = "ta-allow.txt"
 

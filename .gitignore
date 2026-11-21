@@ -25,3 +25,18 @@ TI-Webinar.pdf
 
 # Local attestation test script
 demo/test.py
+
+# Local measurement and benchmarking scripts
+/benchmark_attestation.py
+/demo/benchmark_attestation.py
+/demo/boot_timing.py
+/demo/boottime.py
+/demo/plot_attestation.py
+/demo/plot_boot_timing.py
+/demo/plot_memory_regions.py
+
+# Local board public-key exports and backups
+demo/pubkey-board*.pem*
+
+# Temporary benchmark smoke-test output
+demo/benchmark-smoke.csv
